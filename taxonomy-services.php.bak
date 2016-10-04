@@ -1,0 +1,72 @@
+<?php get_template_part('templates/page', 'header'); ?>
+<div class="container">
+	<?php echo term_description(); ?>
+</div>
+<?php if (!have_posts()) : ?>
+  <div class="alert alert-warning">
+    <?php _e('Sorry, no results were found.', 'sage'); ?>
+  </div>
+  <?php get_search_form(); ?>
+<?php endif; ?>
+
+<ul class="portfolio-grid">
+<?php while (have_posts()) : the_post(); ?>
+	<li><?php get_template_part('templates/content', get_post_type() != 'post' ? get_post_type() : get_post_format()); ?></li>
+<?php endwhile; wp_reset_postdata(); ?>
+</ul>
+
+<div class="contact-wrapper">
+	<div class="container">
+		<h3 class="headline text-center">Request a Consultation</h3>
+		<?= gravity_form('Consultation', false, false, false, '', false); ?>
+	</div>
+</div>
+
+<?php the_posts_navigation(); ?>
+
+
+<div class="">
+	<div class="container">
+		<h3 class="headline text-center">Additional Portfolios</h3>
+
+		<?php
+		$current_term = get_queried_object()->term_id;
+		$tax = 'services';
+		$terms = get_terms( $tax ,  array(
+			'exclude' => $current_term,
+			'order' => 'ASC',
+			'orderby' => 'name'
+		) );
+		if ( ! empty( $terms ) && ! is_wp_error( $terms ) ){
+			echo '<ul class="featured-services">';
+				foreach ( $terms as $term ) { $theslug = $term->slug; ?>
+				    <li>
+				    	<article>
+					    	<a href="<?= get_term_link($term->slug, $tax); ?>">
+						    	<figure>
+							    	<?php
+									$post_args = array(
+										'posts_per_page' => 1,
+										$tax => $theslug,
+										'post_type' => 'portfolio'
+									);
+
+								    $posts = get_posts($post_args);
+
+									foreach($posts as $post) {
+										the_post_thumbnail('thumbnail', array('class'=>'img-responsive'));
+									} wp_reset_postdata(); ?>
+
+						    	</figure>
+						    	<h4><?=$term->name; ?> Photography</h4>
+					    	</a>
+				    	</article>
+				    </li>
+				<?php
+				} wp_reset_postdata();
+			echo '</ul>';
+		}
+		?>
+
+	</div>
+</div>

@@ -1,0 +1,48 @@
+.white-popup {
+	position: relative;
+	background: #FFF;
+	padding: 20px;
+	width: auto;
+	max-width: 500px;
+	margin: 20px auto;
+}
+
+a.mail-btn {
+	text-align: center;
+	background: @orange-bold;
+	display: block;
+	margin-bottom: -20px;
+	margin-right: -20px;
+	margin-left: -20px;
+	padding: 8px;
+	color: white;
+	text-decoration: none !important;
+	&:hover {
+		background: @brand-primary;
+	}
+}
+
+.page-nav {
+	&.next-prev {
+		.inline;
+		li {
+			position: absolute;
+			top:40.333%;
+			&[rel="next"] {
+				right:15px;
+			}
+			&[rel="previous"] {
+				left:15px;
+			}
+			a {
+				background: fade(@brand-primary, 50%);
+				padding: 18px 15px;
+				color: #FFF;
+				text-decoration: none;
+				&:hover {
+					background: @orange-bold;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,184 @@
+.navbar-default {
+	background-color: @body-color;
+	margin-bottom: 0;
+	border-bottom: 0;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,0.22);
+}
+
+.navbar-header {
+	width: 100%;
+	.fa-ul {
+		margin-bottom: 5px;
+		margin-top: 5px;
+		text-transform: uppercase;
+		font-weight: 700;
+		>li {
+			font-size: .9em;
+			display: inline-block;
+			padding-right: 35px;
+			margin-bottom: 0;
+			&:last-child {
+				padding-right: 15px;
+			}
+		}
+	}
+	.navbar-toggle {
+		clear: right;
+	}
+
+	a.navbar-brand {
+		padding: 0;
+		svg#camera1-logo {
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: auto;
+			height: auto;
+			max-height: 100%;
+			max-width: 100%;
+			transition: all 0.25s ease-in;
+			@media (max-width:@screen-xs-max) {
+				height: 50px;
+			}
+			&:hover {
+				path {
+					fill: @orange-bold;
+				}
+			}
+		}
+	}
+}
+
+.navbar-default .navbar-collapse {
+	clear: both;
+}
+
+.nav {
+	&.navbar-nav {
+		&#menu-primary-navigation {
+			@media(min-width:@screen-sm-min) {
+				float: right;
+				clear: right;
+				border-top: 2px solid #EEE;
+			}
+			> li {
+				margin-bottom: 0;
+				> a {
+					.header-text();
+					letter-spacing: 1px;
+					font-weight: 400;
+					text-transform: uppercase;
+					border-bottom: 4px solid transparent;
+					font-weight: 600;
+					text-shadow: none !important;
+				}
+				&.active {
+					> a, > a:focus, > a:hover {
+						background-color: transparent;
+						color: @brand-primary;
+						border-bottom: 0;
+						@media (min-width:@screen-sm-min) {
+							border-bottom: 4px solid @orange-bold;
+							color: #555;
+						}
+					}
+				}
+				&.menu-client-login {
+					a {
+						&:before {
+							content: "\f023";
+							font-family: "FontAwesome";
+							display: block;
+							content: " ";
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.page-header {
+	border-bottom: 0;
+	background: @shaded-default;
+	text-align: center;
+	padding: 20px;
+	@media(min-width:@screen-sm-min) {
+		padding: 60px;
+	}
+	margin: 0;
+	h1 {
+		margin: 0;
+		.headline;
+		font-size: 2em;
+	}
+}
+
+.home {
+	.page-header {
+		margin: 0;
+	}
+}
+
+.banner-ratio {
+  .aspect-ratio(32,7);
+}
+
+.bg-banner {
+	background-size: contain;
+	width: 100%;
+	>.content {
+		>.is-table {
+			height: 100%;
+		    width: 100%;
+			>.table-cell {
+				vertical-align: bottom !important;
+				> h1 {
+					z-index: 10;
+					display: block;
+					position: relative;
+					.headline;
+				    margin: 0;
+				    text-align: center;
+					background: fade(#FFF, 85%);
+					padding: 15px 0;
+					font-size: 2em;
+				}
+			}
+		}
+	}
+}
+
+
+.bg-header {
+	//.page-header;
+	position: relative;
+	padding: 0;
+	width: 100%;
+	height: auto;
+	.aspect-ratio(32, 7);
+	> .content {
+		background-size: contain;
+		border-bottom: 5px solid @orange-light;
+	    background-image: linear-gradient(180deg, rgba(242,239,239,.9), rgba(242,239,239,.75) ), url(http://nycphoto.com/app/uploads/Corporate.jpg);
+	}
+	&:before {
+		background: fade(@shaded-default,80%);
+		content: " ";
+		display: block;
+		position: absolute;
+		top:0;
+		bottom:0;
+		left:0;
+		right:0;
+		width: 100%;
+		z-index: 1;
+	}
+	> h1 {
+		z-index: 10;
+		display: block;
+		position: relative;
+		.headline;
+	}
+}
